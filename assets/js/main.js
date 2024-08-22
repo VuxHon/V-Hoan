@@ -1,45 +1,42 @@
-const colors = ['#e71c99', '#ff602e', '#fc9b02', '#fac403', '#6fcc12', '#199bd3', '#3c34e4', '#8d01f8'];
+const colors = ['#FFC717'];
+let totalStock = 417;
 const listGift = [
     {
-        name: 'Bút bi',
-        percent: 29 / 100,
-        image: './assets/img/product-1.png',
+        name: 'Voucher BEST: 1000K',
+        stock: 1,
+        image: './assets/img/Best_1000k.png'
     },
     {
-        name: 'Sổ tay',
-        percent: 15 / 100,
-        image: './assets/img/product-2.png',
+        name: 'Voucher BEST: 500K',
+        stock: 1,
+        image: './assets/img/Best_500k.png'
     },
     {
-        name: 'Ba lô',
-        percent: 1 / 100,
-        image: './assets/img/product-3.png',
+        name: 'Voucher BEST: 200K',
+        stock: 5,
+        image: './assets/img/Best_200k.png'
     },
     {
-        name: 'Nón bảo hiểm',
-        percent: 5 / 100,
-        image: './assets/img/product-4.png',
+        name: 'Voucher BEST: 100K',
+        stock: 10,
+        image: './assets/img/Best_100k.png'
     },
     {
-        name: 'Bút bi',
-        percent: 15 / 100,
-        image: './assets/img/product-1.png',
+        name: 'Voucher PGI: 500K',
+        stock: 50,
+        image: './assets/img/PGI_500k.jpg'
     },
     {
-        name: 'Sổ tay',
-        percent: 29 / 100,
-        image: './assets/img/product-2.png',
+        name: 'Voucher PGI: 200K',
+        stock: 50,
+        image: './assets/img/PGI_200k.jpg'
     },
     {
-        name: 'Ba lô',
-        percent: 1 / 100,
-        image: './assets/img/product-3.png',
+        name: 'Voucher PGI: 100K',
+        stock: 300,
+        image: './assets/img/PGI_100k.jpg'
     },
-    {
-        name: 'Nón bảo hiểm',
-        percent: 5 / 100,
-        image: './assets/img/product-4.png',
-    },
+    
 ];
 (() => {
     const $ = document.querySelector.bind(document);
@@ -50,24 +47,23 @@ const listGift = [
     let currentRotate = 0;
     const giftSize = listGift.length;
     const rotate = 360 / giftSize;
-    const skewY = 90 - rotate; // Độ nghiêng của 1 item
+    const skewY = 90 - rotate; 
     const renderGift = () => {
         listGift.forEach((item, index) => {
             const itemGift = document.createElement('li');
             itemGift.style.transform = `rotate(${rotate * index}deg) skewY(-${skewY}deg)`;
-            console.log(itemGift.style.transform)
             itemGift.innerHTML = `
                 <p class="text-item" style="
                     background-color: ${colors[index % colors.length]};
                     transform: skewY(${skewY}deg) rotate(${rotate / 2}deg);
                 ">
-                    <b>${item.name}</b>
+                    <b> ${item.name}</b>
                 </p>
                 <img class="wheel-img" src="${item.image}"
                     style="
-                        left: ${rotate / 4}px;
-                        bottom: ${rotate / 2}px;
-                        transform: skewY(${skewY}deg)
+                        left: ${rotate/1.75}px;
+                        bottom: ${rotate/0.85}px;
+                        transform: skewY(${skewY}deg) rotate(${rotate / 2}deg);
                     " />
             `;
             wheel.appendChild(itemGift);
@@ -77,15 +73,21 @@ const listGift = [
         wheel.style.transform = `rotate(${currentRotate - index * rotate - rotate / 2}deg)`;
     }
     const getGift = (randomNumber) => {
+        let isFirst = true;
         let currentPercent = 0;
         let list = [];
         listGift.forEach((item, index) => {
-            currentPercent += item.percent;
-            randomNumber <= currentPercent && list.push({
-                ...item, index
-            });
+            currentPercent += item.stock/totalStock;
+            if (randomNumber <= currentPercent && item.stock>0 ) {
+                list.push({ ...item, index });
+            if (isFirst) {
+                    item.stock=item.stock-1;
+                    isFirst=false;
+            }
+            }
         });
-        console.log(list)
+        totalStock=totalStock-1;
+        console.log(listGift);
         return list[0];
     }
     const showGift = (gift) => {

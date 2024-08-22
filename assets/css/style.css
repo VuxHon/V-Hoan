@@ -1,8 +1,8 @@
 :root {
     --size: 500px;
     --timer: 7s;
-    --border-color-1: linear-gradient(#FFFFFF, #FFFFFF);
-    --border-color-2: linear-gradient(#029454, #029454);
+    --border-color-1: linear-gradient(#000000, #000000);
+    --border-color-2: linear-gradient(#B80000, #B80000);
 }
 
 * {
@@ -95,17 +95,16 @@ li {
     padding-top: 1.7rem;
     text-align: center;
     display: block;
-    color: #fff;
+    color: #020202;
 }
 
 .wheel-img {
     position: absolute;
-    width: 30%;
-    height: 30%;
+    width:30%;
+    height: 15%;
     z-index: 100;
     overflow: hidden;
 }
-
 .msg {
     margin-top: 2rem;
 }
