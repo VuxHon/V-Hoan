@@ -61,9 +61,9 @@ const listGift = [
                 </p>
                 <img class="wheel-img" src="${item.image}"
                     style="
-                        left: ${rotate/1.75}px;
+                        left: ${rotate/2}px;
                         bottom: ${rotate/0.85}px;
-                        transform: skewY(${skewY}deg) rotate(${rotate / 2}deg);
+                        transform: skewY(${skewY}deg) rotate(-${rotate+15}deg);
                     " />
             `;
             wheel.appendChild(itemGift);

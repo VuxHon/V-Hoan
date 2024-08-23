@@ -14,7 +14,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background: center / cover no-repeat url("../img/wallpaper.jpg");
+    background: center / cover no-repeat url("../img/vqpheshow.png");
     font-size: 16px;
 }
 
@@ -23,12 +23,17 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 60px 0px 0 0px;
 }
-
+.text-header {
+    width: 0;
+    height: 0;
+    padding: 0 0 0 10px;
+}
 .main-wheel {
     position: relative;
-    width: calc(var(--size) * 1.1);
-    height: calc(var(--size) * 1.1);
+    width: calc(var(--size) * 1.04);
+    height: calc(var(--size) * 1.04);
     border-radius: 50%;
     background-image: var(--border-color-2);
     display: flex;
@@ -39,16 +44,16 @@ main {
 .main-wheel::after {
     content: '';
     position: absolute;
-    width: calc(var(--size) * 1.05);
-    height: calc(var(--size) * 1.05);
+    width: calc(var(--size) * 1);
+    height: calc(var(--size) * 1);
     border-radius: 50%;
     background-image: var(--border-color-1);
 }
 
 .icon-arrow {
-    width: 100px;
+    width: 90px;
     position: absolute;
-    top: -25px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
